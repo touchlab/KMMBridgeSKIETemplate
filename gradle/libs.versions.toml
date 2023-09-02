@@ -1,23 +1,26 @@
 [versions]
 # Dependencies
-kotlin = "1.8.10"
+kotlin = "1.9.0"
 kmmBridge = "0.3.7"
-android-gradle-plugin = "7.2.2" # Don't bump to 7.3.x until Intellij supports it (unless you're ok with only Android Studio)
+android-gradle-plugin = "8.0.2"
 gradle-versions = "0.42.0"
-androidx-test-junit = "1.1.3"
+androidx-test-junit = "1.1.5"
 junit = "4.13.2"
-coroutines = "1.6.4"
+coroutines = "1.7.3"
 kotlinx-datetime = "0.4.0"
-ktor = "2.1.1"
-kermit = "1.1.3"
-multiplatformSettings = "1.0.0-alpha01"
-turbine = "0.8.0"
-sqlDelight = "1.5.5"
+ktor = "2.3.3"
+
+kermit = "2.0.0-RC3"
+skie = "0.4.18-preview"
+
+multiplatformSettings = "1.0.0"
+turbine = "1.0.0"
+sqlDelight = "2.0.0"
 
 ## SDK Versions
 minSdk = "21"
-targetSdk = "33"
-compileSdk = "33"
+targetSdk = "34"
+compileSdk = "34"
 
 [libraries]
 androidx-test-junit = { module = "androidx.test.ext:junit-ktx", version.ref = "androidx-test-junit" }
@@ -40,11 +43,11 @@ ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 multiplatformSettings-common = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
 multiplatformSettings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "multiplatformSettings" }
 
-sqlDelight-android = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqlDelight" }
-sqlDelight-jvm = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
-sqlDelight-coroutinesExt = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
-sqlDelight-native = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelight" }
-sqlDelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelight" }
+sqlDelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
+sqlDelight-jvm = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
+sqlDelight-coroutinesExt = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
+sqlDelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
+sqlDelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
 
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 

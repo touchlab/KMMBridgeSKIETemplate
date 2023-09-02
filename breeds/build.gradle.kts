@@ -1,13 +1,13 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
-    id("com.squareup.sqldelight")
+    id("app.cash.sqldelight")
     id("com.android.library")
     `maven-publish`
 }
 
 kotlin {
-    android {
+    androidTarget {
         publishAllLibraryVariants()
     }
     ios()
@@ -37,7 +37,7 @@ kotlin {
                 implementation(libs.ktor.client.okHttp)
             }
         }
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(libs.bundles.shared.androidTest)
             }
@@ -64,12 +64,13 @@ android {
         @Suppress("UnstableApiUsage")
         minSdk = libs.versions.minSdk.get().toInt()
     }
+    namespace = "co.touchlab.kmmbridgekickstart.breeds"
 }
 
 addGithubPackagesRepository()
 
 sqldelight {
-    database("KMMBridgeKickStartDb") {
-        packageName = "co.touchlab.kmmbridgekickstart.db"
+    databases.create("KMMBridgeKickStartDb") {
+        packageName.set("co.touchlab.kmmbridgekickstart.db")
     }
 }

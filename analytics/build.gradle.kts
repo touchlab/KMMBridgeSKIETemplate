@@ -5,7 +5,7 @@ plugins {
 }
 
 kotlin {
-    android {
+    androidTarget {
         publishAllLibraryVariants()
     }
     ios()
@@ -14,7 +14,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("co.touchlab:stately-concurrency:1.2.3")
+                implementation("co.touchlab:stately-concurrency:1.2.5")
             }
         }
         val commonTest by getting {
@@ -39,6 +39,7 @@ android {
         @Suppress("UnstableApiUsage")
         minSdk = libs.versions.minSdk.get().toInt()
     }
+    namespace = "co.touchlab.kmmbridgekickstart.analytics"
 }
 
 addGithubPackagesRepository()
