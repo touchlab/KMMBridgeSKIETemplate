@@ -1,16 +1,17 @@
 package co.touchlab.kmmbridgekickstart
 
 import android.content.Context
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import co.touchlab.kmmbridgekickstart.db.KMMBridgeKickStartDb
 import co.touchlab.kmmbridgekickstart.repository.BreedRepository
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.SharedPreferencesSettings
-import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import io.ktor.client.engine.*
 import io.ktor.client.engine.okhttp.*
 
-fun breedStartup(context: Context, analyticsHandle: AnalyticsHandle): BreedRepository {
+internal fun breedStartup(context: Context, analyticsHandle: AnalyticsHandle): BreedRepository {
     val locator = AndroidServiceLocator(context, analyticsHandle)
     return locator.breedRepository
 }
