@@ -3,6 +3,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("co.touchlab.faktory.kmmbridge")
+    id("co.touchlab.skie") version "0.4.18-preview"
     `maven-publish`
 }
 
