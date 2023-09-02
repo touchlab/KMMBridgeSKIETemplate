@@ -48,7 +48,7 @@ class BreedRepository internal constructor(
         val oneHourMS = 60 * 60 * 1000
         val stale = lastDownloadTimeMS + oneHourMS < clock.now().toEpochMilliseconds()
         if (!stale) {
-            breedAnalytics.breedsNotFetchedFromNetwork("Recently updated")
+            breedAnalytics.breedsNotFetchedFromNetwork(BreedAnalytics.NotFetchedReason.NotStale)
         }
         return stale
     }

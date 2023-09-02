@@ -38,7 +38,11 @@ class BreedAnalytics internal constructor() {
         sendEvent("breedsFetched", "size" to size)
     }
 
-    fun breedsNotFetchedFromNetwork(reason: String) {
+    enum class NotFetchedReason{
+        NotStale, NetworkError
+    }
+
+    fun breedsNotFetchedFromNetwork(reason: NotFetchedReason) {
         sendEvent("breedsNotFetchedFromNetwork", "reason" to reason)
     }
 
