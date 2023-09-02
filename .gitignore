@@ -13,3 +13,5 @@ build
 *.xcbkptlist
 !/.idea/codeStyles/*
 !/.idea/inspectionProfiles/*
+
+.swiftpm
