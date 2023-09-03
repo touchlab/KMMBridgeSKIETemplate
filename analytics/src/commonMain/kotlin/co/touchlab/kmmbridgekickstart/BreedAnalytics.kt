@@ -14,7 +14,7 @@ class BreedAnalytics internal constructor() {
         sendEvent("viewUpdatingWithBreeds", "size" to size)
     }
 
-    fun displayingError(message: String) {
+    fun displayingError(message: NotFetchedReason) {
         sendEvent("viewDisplayingError", "message" to message)
     }
 
@@ -39,7 +39,7 @@ class BreedAnalytics internal constructor() {
     }
 
     enum class NotFetchedReason{
-        NotStale, NetworkError
+        NotStale, NetworkError, RandomFail
     }
 
     fun breedsNotFetchedFromNetwork(reason: NotFetchedReason) {
