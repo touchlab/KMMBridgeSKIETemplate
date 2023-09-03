@@ -6,10 +6,7 @@ import co.touchlab.kmmbridgekickstart.db.Breed
 import co.touchlab.kmmbridgekickstart.ktor.DogApi
 import com.russhwolf.settings.Settings
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.datetime.Clock
 import kotlin.random.Random
 
@@ -20,11 +17,22 @@ class BreedRepository internal constructor(
     private val clock: Clock,
     private val breedAnalytics: BreedAnalytics
 ) {
+    private val mutableDataState = MutableStateFlow(findLocalDataState())
+    val dataState = mutableDataState.asStateFlow()
 
-    private val mutableDataState: MutableStateFlow<BreedDataState> =
-        MutableStateFlow(BreedDataState.Initial)
+    private val mutableDataEvent =
+        MutableSharedFlow<BreedDataEvent>(replay = 1).apply { tryEmit(BreedDataEvent.Initial) }
+    val dataEvents = mutableDataEvent.asSharedFlow()
 
-    val dataState: StateFlow<BreedDataState> = mutableDataState.asStateFlow()
+    private fun findLocalDataState(): BreedDataRefreshState {
+        val last = lastDataPull()
+        val localDataState = if (last == 0L) {
+            BreedDataState.Empty
+        } else {
+            BreedDataState.Cached(last)
+        }
+        return localDataState
+    }
 
     companion object {
         internal const val DB_TIMESTAMP_KEY = "DbTimestampKey"
@@ -35,19 +43,18 @@ class BreedRepository internal constructor(
     suspend fun refreshBreedsIfStale() {
         if (isBreedListStale()) {
             refreshBreeds()
-        } else {
-            mutableDataState.value = BreedDataState.Cached(lastDataPull())
         }
     }
 
     suspend fun refreshBreeds() {
-        mutableDataState.value = BreedDataState.Loading
+        mutableDataEvent.emit(BreedDataEvent.Loading)
+        mutableDataState.value = BreedDataEvent.Loading
 
         delay(3000) // The server is too fast...
 
         // Simulate issues...
-        if (Random.nextBoolean()) {
-            mutableDataState.value = BreedDataState.Error(BreedAnalytics.NotFetchedReason.RandomFail)
+        val resultEvent: BreedDataEvent = if (Random.nextBoolean()) {
+            BreedDataEvent.Error(BreedAnalytics.NotFetchedReason.RandomFail)
         } else {
             try {
                 val breedResult = dogApi.getJsonFromApi()
@@ -59,11 +66,14 @@ class BreedRepository internal constructor(
                     dbHelper.insertBreeds(breedList)
                 }
 
-                mutableDataState.value = BreedDataState.RefreshedSuccess
+                BreedDataEvent.RefreshedSuccess
             } catch (e: Exception) {
-                mutableDataState.value = BreedDataState.Error(BreedAnalytics.NotFetchedReason.NetworkError)
+                BreedDataEvent.Error(BreedAnalytics.NotFetchedReason.NetworkError)
             }
         }
+
+        mutableDataEvent.emit(resultEvent)
+        mutableDataState.value = findLocalDataState()
     }
 
     suspend fun updateBreedFavorite(breed: Breed) {
@@ -83,10 +93,16 @@ class BreedRepository internal constructor(
     private fun lastDataPull() = settings.getLong(DB_TIMESTAMP_KEY, 0)
 }
 
+sealed interface BreedDataRefreshState
+
 sealed class BreedDataState {
-    data object Initial : BreedDataState()
-    data object Loading : BreedDataState()
-    data class Error(val reason: BreedAnalytics.NotFetchedReason) : BreedDataState()
-    data class Cached(val lastRefresh: Long) : BreedDataState()
-    data object RefreshedSuccess : BreedDataState()
+    data object Empty : BreedDataState(), BreedDataRefreshState
+    data class Cached(val lastRefresh: Long) : BreedDataState(), BreedDataRefreshState
+}
+
+sealed class BreedDataEvent {
+    data object Initial : BreedDataEvent()
+    data object Loading : BreedDataEvent(), BreedDataRefreshState
+    data class Error(val reason: BreedAnalytics.NotFetchedReason) : BreedDataEvent()
+    data object RefreshedSuccess : BreedDataEvent()
 }
