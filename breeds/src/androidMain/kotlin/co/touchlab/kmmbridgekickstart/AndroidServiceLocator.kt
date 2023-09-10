@@ -7,7 +7,6 @@ import co.touchlab.kmmbridgekickstart.db.KMMBridgeKickStartDb
 import co.touchlab.kmmbridgekickstart.repository.BreedRepository
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.SharedPreferencesSettings
-import com.squareup.sqldelight.db.SqlDriver
 import io.ktor.client.engine.*
 import io.ktor.client.engine.okhttp.*
 
