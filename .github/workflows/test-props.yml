@@ -1,0 +1,19 @@
+name: Azure Static Web Apps CI/CD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  try_props:
+    runs-on: ubuntu-latest
+    name: Read a property
+    steps:
+      - uses: touchlab/read-property@main
+        id: testprop
+        with:
+          file: ./gradle.properties
+          property: LIBRARY_VERSION
+
+      - name: Print Output
+        id: output
+        run: echo "${{ steps.testprop.outputs.propVal }}"
