@@ -5,6 +5,7 @@ plugins {
     id("com.android.library") version libs.versions.android.gradle.plugin.get() apply false
     id("co.touchlab.faktory.kmmbridge") version libs.versions.kmmBridge.get() apply false
     id("app.cash.sqldelight") version libs.versions.sqlDelight.get() apply false
+    id("co.touchlab.skie") version libs.versions.skie.get() apply false
 }
 
 allprojects {

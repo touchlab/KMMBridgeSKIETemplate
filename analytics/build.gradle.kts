@@ -14,7 +14,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("co.touchlab:stately-concurrency:1.2.5")
+                implementation(libs.touchlab.stately.common)
+                implementation(libs.touchlab.stately.concurrency)
             }
         }
         val commonTest by getting {

@@ -1,16 +1,27 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
     id("co.touchlab.faktory.kmmbridge")
-    id("co.touchlab.skie") version "0.4.18-preview"
+    id("co.touchlab.skie")
     `maven-publish`
 }
 
 kotlin {
-    ios()
-    // Note: iosSimulatorArm64 target requires that all dependencies have M1 support
-    iosSimulatorArm64()
+    val frameworkConfigure: Framework.() -> Unit = {
+        // Getting some kind of Gradle error
+//            export(project(":analytics"))
+        isStatic = true
+    }
+
+    ios {
+        binaries.framework(configure = frameworkConfigure)
+    }
+
+    iosSimulatorArm64 {
+        binaries.framework(configure = frameworkConfigure)
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -31,17 +42,6 @@ kotlin {
         }
         val iosSimulatorArm64Test by getting {
             dependsOn(iosTest)
-        }
-    }
-
-    cocoapods {
-        summary = "KMMBridgeKickStart sample"
-        homepage = "https://www.touchlab.co"
-        ios.deploymentTarget = "13.5"
-        extraSpecAttributes["libraries"] = "'c++', 'sqlite3'"
-
-        framework {
-            isStatic = true
         }
     }
 }
