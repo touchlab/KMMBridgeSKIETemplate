@@ -11,6 +11,7 @@ jobs:
       packages: write
     uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@autoversion
     with:
+      jvmVersion: 17
       versionBaseProperty: LIBRARY_VERSION
       publishTask: kmmBridgePublish publishKotlinMultiplatformPublicationToGitHubPackagesRepository publishAndroidDebugPublicationToGitHubPackagesRepository publishAndroidReleasePublicationToGitHubPackagesRepository
 #    secrets:
