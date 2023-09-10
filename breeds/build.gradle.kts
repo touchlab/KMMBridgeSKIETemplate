@@ -60,6 +60,12 @@ kotlin {
 
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     defaultConfig {
         @Suppress("UnstableApiUsage")
         minSdk = libs.versions.minSdk.get().toInt()
