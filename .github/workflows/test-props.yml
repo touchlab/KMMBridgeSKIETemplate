@@ -20,3 +20,12 @@ jobs:
       - name: Print Output
         id: output
         run: echo "${{ steps.testprop.outputs.propVal }}"
+
+      - uses: touchlab/autoversion@main
+        id: autoversion
+        with:
+          versionBase: 0.1
+
+      - name: Print Next Version
+        id: outputversion
+        run: echo "${{ steps.autoversion.outputs.nextVersion }}"
