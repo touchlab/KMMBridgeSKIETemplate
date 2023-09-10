@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Read a property
     steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
       - uses: touchlab/read-property@main
         id: testprop
         with:
