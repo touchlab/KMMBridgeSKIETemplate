@@ -12,7 +12,7 @@ plugins {
 kotlin {
     val frameworkConfigure: Framework.() -> Unit = {
         // Getting some kind of Gradle error
-//            export(project(":analytics"))
+        export(project(":analytics"))
         isStatic = true
     }
 
