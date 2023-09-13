@@ -20,7 +20,7 @@ kotlin {
         binaries.framework(configure = frameworkConfigure)
     }
 
-    iosSimulatorArm64("ios") {
+    iosSimulatorArm64 {
         binaries.framework(configure = frameworkConfigure)
     }
 
