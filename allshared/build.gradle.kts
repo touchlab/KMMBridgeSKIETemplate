@@ -52,7 +52,7 @@ addGithubPackagesRepository()
 kmmbridge {
     mavenPublishArtifacts()
     manualVersions()
-    versionWriter.set(GitRemoteVersionWriter())
+    noGitOperations()
     spm()
 
 //    cocoapods("git@github.com:touchlab/PodSpecs.git")
