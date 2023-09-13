@@ -1,4 +1,3 @@
-import co.touchlab.faktory.versionmanager.GitRemoteVersionWriter
 import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
 
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -11,8 +10,7 @@ plugins {
 
 kotlin {
     val frameworkConfigure: Framework.() -> Unit = {
-        // Getting some kind of Gradle error
-//            export(project(":analytics"))
+        export(project(":analytics"))
         isStatic = true
     }
 
