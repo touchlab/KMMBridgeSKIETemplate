@@ -16,11 +16,11 @@ kotlin {
         isStatic = true
     }
 
-    ios {
-        binaries.framework(configure = frameworkConfigure)
-    }
+//    ios {
+//        binaries.framework(configure = frameworkConfigure)
+//    }
 
-    iosSimulatorArm64 {
+    iosSimulatorArm64("ios") {
         binaries.framework(configure = frameworkConfigure)
     }
 
@@ -36,14 +36,14 @@ kotlin {
                 implementation(libs.bundles.shared.commonTest)
             }
         }
-        val iosMain by getting
-        val iosTest by getting
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
-        val iosSimulatorArm64Test by getting {
-            dependsOn(iosTest)
-        }
+//        val iosMain by getting
+//        val iosTest by getting
+//        val iosSimulatorArm64Main by getting {
+//            dependsOn(iosMain)
+//        }
+//        val iosSimulatorArm64Test by getting {
+//            dependsOn(iosTest)
+//        }
     }
 }
 
