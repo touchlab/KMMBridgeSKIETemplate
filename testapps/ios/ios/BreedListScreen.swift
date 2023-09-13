@@ -14,7 +14,7 @@ struct BreedListScreen: View {
     @ObservedObject
     var viewModel: BreedViewModel
     
-    let breedAnalytics: AnalyticsBreedAnalytics
+    let breedAnalytics: BreedAnalytics
     
     var body: some View {
         BreedListContent(
@@ -32,7 +32,7 @@ struct BreedListScreen: View {
 
 struct BreedListContent: View {
     
-    let breedAnalytics: AnalyticsBreedAnalytics
+    let breedAnalytics: BreedAnalytics
     var breeds: [BreedsBreed]?
     var onBreedFavorite: (BreedsBreed) -> Void
     var refresh: () -> Void

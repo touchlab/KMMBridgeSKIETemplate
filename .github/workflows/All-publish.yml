@@ -9,10 +9,11 @@ jobs:
     permissions:
       contents: write
       packages: write
-    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@autoversion
+    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@autoversion
     with:
       jvmVersion: 17
       versionBaseProperty: LIBRARY_VERSION
+      retainBuildBranch: true
       publishTask: kmmBridgePublish publishKotlinMultiplatformPublicationToGitHubPackagesRepository publishAndroidDebugPublicationToGitHubPackagesRepository publishAndroidReleasePublicationToGitHubPackagesRepository
 #    secrets:
 #      PODSPEC_SSH_KEY: ${{ secrets.PODSPEC_SSH_KEY }}

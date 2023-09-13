@@ -27,7 +27,7 @@ struct iosApp: App {
     }
 }
 
-class IosAnalytics: AnalyticsAnalytics {
+class IosAnalytics: Analytics {
     func sendEvent(eventName: String, eventArgs: [String : Any]) {
         // In a real app, you would call to your analytics backend here
         print("\(eventName) - \(eventArgs)")

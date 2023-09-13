@@ -13,7 +13,7 @@ import allshared
 class BreedViewModel : ObservableObject {
     
     private let repository: BreedsBreedRepository
-    private let breedAnalytics: AnalyticsBreedAnalytics
+    private let breedAnalytics: BreedAnalytics
     
     @Published
     var breeds: [BreedsBreed]?
@@ -26,7 +26,7 @@ class BreedViewModel : ObservableObject {
     
     private var cancellables = [AnyCancellable]()
     
-    init(repository: BreedsBreedRepository, breedAnalytics: AnalyticsBreedAnalytics) {
+    init(repository: BreedsBreedRepository, breedAnalytics: BreedAnalytics) {
         self.repository = repository
         self.breedAnalytics = breedAnalytics
         self.dataState = repository.dataState.value // Sync access to the value, if you need it.

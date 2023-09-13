@@ -1,6 +1,6 @@
 [versions]
 # Dependencies
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 kmmBridge = "0.3.7"
 android-gradle-plugin = "8.0.2"
 gradle-versions = "0.42.0"
@@ -56,9 +56,6 @@ touchlab-stately-concurrency = { module = "co.touchlab:stately-concurrency", ver
 
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-
-[plugins]
-gradleVersions = { id = "com.github.ben-manes.versions", version.ref = "gradle-versions" }
 
 [bundles]
 ktor-common = ["ktor-client-core", "ktor-client-logging", "ktor-client-serialization", "ktor-client-contentNegotiation"]
