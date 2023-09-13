@@ -1,6 +1,3 @@
-import co.touchlab.faktory.versionmanager.GitRemoteVersionWriter
-import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
-
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("multiplatform")
@@ -10,18 +7,17 @@ plugins {
 }
 
 kotlin {
-    val frameworkConfigure: Framework.() -> Unit = {
-        // Getting some kind of Gradle error
-        export(project(":analytics"))
-        isStatic = true
-    }
+    targetHierarchy.default()
 
-    ios {
-        binaries.framework(configure = frameworkConfigure)
-    }
-
-    iosSimulatorArm64 {
-        binaries.framework(configure = frameworkConfigure)
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            export(project(":analytics"))
+            isStatic = true
+        }
     }
 
     sourceSets {
@@ -35,14 +31,6 @@ kotlin {
             dependencies {
                 implementation(libs.bundles.shared.commonTest)
             }
-        }
-        val iosMain by getting
-        val iosTest by getting
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
-        val iosSimulatorArm64Test by getting {
-            dependsOn(iosTest)
         }
     }
 }
