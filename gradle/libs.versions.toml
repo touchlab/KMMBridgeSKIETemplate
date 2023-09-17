@@ -1,7 +1,7 @@
 [versions]
 # Dependencies
 kotlin = "1.9.10"
-kmmBridge = "0.3.7"
+kmmBridge = "0.5.1-SNAPSHOT"
 android-gradle-plugin = "8.0.2"
 gradle-versions = "0.42.0"
 androidx-test-junit = "1.1.5"

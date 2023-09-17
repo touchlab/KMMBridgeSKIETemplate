@@ -1,6 +1,3 @@
-import co.touchlab.faktory.versionmanager.GitRemoteVersionWriter
-import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
-
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("multiplatform")
@@ -42,8 +39,6 @@ addGithubPackagesRepository()
 
 kmmbridge {
     mavenPublishArtifacts()
-    manualVersions()
-    noGitOperations()
     spm()
 
 //    cocoapods("git@github.com:touchlab/PodSpecs.git")
