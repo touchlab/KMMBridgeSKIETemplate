@@ -10,7 +10,7 @@ coroutines = "1.7.3"
 kotlinx-datetime = "0.4.0"
 ktor = "2.3.3"
 
-stately = "2.0.0-rc3"
+stately = "2.0.2"
 kermit = "2.0.0-RC3"
 skie = "0.4.19"
 

@@ -1,3 +1,6 @@
+import co.touchlab.faktory.versionmanager.GitRemoteVersionWriter
+import org.jetbrains.kotlin.gradle.plugin.mpp.Framework
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("multiplatform")
