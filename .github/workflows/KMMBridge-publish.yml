@@ -11,6 +11,7 @@ jobs:
       packages: write
     uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildbranches.yml@autoversion
     with:
-      jvmVersion: '17'
+      jvmVersion: 17
+      versionBaseProperty: LIBRARY_VERSION
 #    secrets:
 #      PODSPEC_SSH_KEY: ${{ secrets.PODSPEC_SSH_KEY }}
