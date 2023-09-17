@@ -13,7 +13,6 @@ jobs:
     with:
       jvmVersion: 17
       versionBaseProperty: LIBRARY_VERSION
-      retainBuildBranch: true
       publishTask: kmmBridgePublish publishKotlinMultiplatformPublicationToGitHubPackagesRepository publishAndroidDebugPublicationToGitHubPackagesRepository publishAndroidReleasePublicationToGitHubPackagesRepository
 #    secrets:
 #      PODSPEC_SSH_KEY: ${{ secrets.PODSPEC_SSH_KEY }}
