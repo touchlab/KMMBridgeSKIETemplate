@@ -16,8 +16,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-//                implementation(libs.touchlab.stately.common)
-//                implementation(libs.touchlab.stately.concurrency)
+                implementation(libs.touchlab.stately.concurrency)
             }
         }
     }

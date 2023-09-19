@@ -12,7 +12,7 @@ coroutines = "1.7.3"
 kotlinx-datetime = "0.4.0"
 ktor = "2.3.3"
 
-#stately = "2.0.2"
+stately = "2.0.2"
 kermit = "2.0.0-RC5"
 skie = "0.4.19"
 
@@ -51,8 +51,8 @@ sqlDelight-native = { module = "app.cash.sqldelight:native-driver", version.ref 
 sqlDelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
 
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
-#touchlab-stately-common = { module = "co.touchlab:stately-common", version.ref = "stately" }
-#touchlab-stately-concurrency = { module = "co.touchlab:stately-concurrency", version.ref = "stately" }
+touchlab-stately-common = { module = "co.touchlab:stately-common", version.ref = "stately" }
+touchlab-stately-concurrency = { module = "co.touchlab:stately-concurrency", version.ref = "stately" }
 
 # Sample - Android
 androidx-core = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }

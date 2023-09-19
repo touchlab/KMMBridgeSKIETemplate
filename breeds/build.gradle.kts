@@ -36,6 +36,7 @@ kotlin {
         }
         val iosMain by getting {
             dependencies {
+                implementation(libs.touchlab.stately.common)
                 implementation(libs.sqlDelight.native)
                 implementation(libs.ktor.client.ios)
             }
