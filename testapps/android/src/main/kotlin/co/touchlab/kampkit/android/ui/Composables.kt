@@ -15,11 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Divider
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -29,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -67,7 +64,6 @@ fun MainScreenContent(
     dataEvent: BreedDataEvent,
     breedList: List<Breed>,
     onRefresh: () -> Unit = {},
-    onError: (String) -> Unit = {},
     onFavorite: (Breed) -> Unit = {}
 ) {
     Surface(
@@ -76,21 +72,34 @@ fun MainScreenContent(
     ) {
         val refreshState = rememberPullRefreshState(dataEvent is BreedDataEvent.Loading, onRefresh)
 
-        Box(Modifier.pullRefresh(refreshState)) {
-            when(dataEvent){
-                is BreedDataEvent.Error -> Error(dataEvent.reason.name)
-                BreedDataEvent.Initial -> Empty()
-                BreedDataEvent.Loading -> Empty()
-                BreedDataEvent.RefreshedSuccess -> {
-                    if(breedList.isEmpty()){
-                        Empty()
-                    }else {
-                        Success(successData = breedList, favoriteBreed = onFavorite)
-                    }
-                }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            when (dataEvent) {
+                is BreedDataEvent.Error -> Text(dataEvent.reason.name, color = Color.Red)
+                BreedDataEvent.Initial -> Text("")
+                BreedDataEvent.Loading -> Text("Loading...")
+                BreedDataEvent.RefreshedSuccess -> Text("Success")
             }
 
-            PullRefreshIndicator(dataEvent is BreedDataEvent.Loading, refreshState, Modifier.align(Alignment.TopCenter))
+            when (dataState) {
+                is BreedDataState.Cached -> Button(onRefresh) { Text("Refresh") }
+                BreedDataState.Empty -> Button(onRefresh) { Text("Load Data") }
+                BreedDataEvent.Loading -> Button(onRefresh, enabled = false) { Text("Refresh") }
+            }
+
+            Box(Modifier.pullRefresh(refreshState)) {
+                when (dataState) {
+                    is BreedDataState.Cached, BreedDataEvent.Loading -> Success(
+                        successData = breedList,
+                        favoriteBreed = onFavorite
+                    )
+                    BreedDataState.Empty -> Empty()
+                }
+                PullRefreshIndicator(
+                    dataEvent is BreedDataEvent.Loading,
+                    refreshState,
+                    Modifier.align(Alignment.TopCenter)
+                )
+            }
         }
     }
 }
@@ -160,7 +169,7 @@ fun FavoriteIcon(breed: Breed) {
         animationSpec = TweenSpec(
             durationMillis = 500,
             easing = FastOutSlowInEasing
-        )
+        ), label = "favFade"
     ) { fav ->
         if (fav) {
             Image(

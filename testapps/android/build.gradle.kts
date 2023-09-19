@@ -43,9 +43,29 @@ android {
     }
 }
 
+val remoteBuild = false
+
+if (remoteBuild) {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/touchlab-lab/KMMBridgeKickStartSKIE")
+            credentials {
+                username = project.property("GITHUB_PACKAGES_USERNAME") as String
+                password = project.property("GITHUB_PACKAGES_PASSWORD") as String
+            }
+        }
+    }
+}
+
 dependencies {
-    implementation(project(":analytics"))
-    implementation(project(":breeds"))
+    if (remoteBuild) {
+        implementation(libs.sharedlib.breeds)
+        implementation(libs.sharedlib.analytics)
+    } else {
+        implementation(project(":analytics"))
+        implementation(project(":breeds"))
+    }
     implementation(libs.bundles.app.ui)
     implementation(libs.koin.android)
     coreLibraryDesugaring(libs.android.desugaring)
