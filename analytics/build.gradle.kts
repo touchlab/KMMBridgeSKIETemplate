@@ -5,6 +5,8 @@ plugins {
 }
 
 kotlin {
+    @Suppress("OPT_IN_USAGE")
+    targetHierarchy.default()
     androidTarget {
         publishAllLibraryVariants()
     }
@@ -14,22 +16,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.touchlab.stately.common)
-                implementation(libs.touchlab.stately.concurrency)
+//                implementation(libs.touchlab.stately.common)
+//                implementation(libs.touchlab.stately.concurrency)
             }
-        }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
-        val iosMain by getting
-        val iosTest by getting
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
-        val iosSimulatorArm64Test by getting {
-            dependsOn(iosTest)
         }
     }
 }

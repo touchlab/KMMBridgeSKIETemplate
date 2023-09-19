@@ -1,53 +1,52 @@
-
-// https://youtrack.jetbrains.com/issue/KTIJ-19369
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.gradleVersions)
-    alias(libs.plugins.ktlint) apply false
-
-    kotlin("multiplatform") version libs.versions.kotlin.get() apply false
-    kotlin("plugin.serialization") version libs.versions.kotlin.get() apply false
-    id("app.cash.sqldelight") version libs.versions.sqlDelight.get() apply false
-    id("com.android.library") version libs.versions.android.gradle.plugin.get() apply false
+    id("com.android.application")
+    kotlin("android")
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://androidx.dev/storage/compose-compiler/repository/")
-        maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev/")
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/touchlab-lab/KMMBridgeKickStartSKIE")
-            credentials {
-                username = project.property("GITHUB_PACKAGES_USERNAME") as String
-                password = project.property("GITHUB_PACKAGES_PASSWORD") as String
-            }
+android {
+    namespace = "co.touchlab.kampkit.android"
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    defaultConfig {
+        applicationId = "co.touchlab.kampkit"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = 1
+        versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+    }
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+    }
+
+    lint {
+        warningsAsErrors = false
+        abortOnError = true
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
-subprojects {
-    // TODO libs doesn't resolve if we do this
-    // apply(plugin = libs.plugins.ktlint.get().pluginId)
-    apply(plugin = "org.jlleitschuh.gradle.ktlint")
-
-    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
-        enableExperimentalRules.set(true)
-        verbose.set(true)
-        filter {
-            exclude { it.file.path.contains("build/") }
-        }
-    }
-
-    afterEvaluate {
-        tasks.named("check").configure {
-            dependsOn(tasks.getByName("ktlintCheck"))
-        }
-    }
-}
-
-tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+dependencies {
+    implementation(project(":analytics"))
+    implementation(project(":breeds"))
+    implementation(libs.bundles.app.ui)
+    implementation(libs.koin.android)
+    coreLibraryDesugaring(libs.android.desugaring)
 }

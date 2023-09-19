@@ -7,6 +7,8 @@ plugins {
 }
 
 kotlin {
+    @Suppress("OPT_IN_USAGE")
+    targetHierarchy.default()
     androidTarget {
         publishAllLibraryVariants()
     }
@@ -20,15 +22,10 @@ kotlin {
                 implementation(project(":analytics"))
                 implementation(libs.coroutines.core)
                 implementation(libs.bundles.ktor.common)
-                implementation(libs.multiplatformSettings.common)
+                implementation(libs.multiplatformSettings)
                 implementation(libs.kotlinx.dateTime)
                 implementation(libs.touchlab.kermit)
                 implementation(libs.sqlDelight.coroutinesExt)
-            }
-        }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.bundles.shared.commonTest)
             }
         }
         val androidMain by getting {
@@ -37,24 +34,11 @@ kotlin {
                 implementation(libs.ktor.client.okHttp)
             }
         }
-        val androidUnitTest by getting {
-            dependencies {
-                implementation(libs.bundles.shared.androidTest)
-            }
-        }
-
         val iosMain by getting {
             dependencies {
                 implementation(libs.sqlDelight.native)
                 implementation(libs.ktor.client.ios)
             }
-        }
-        val iosTest by getting
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
-        val iosSimulatorArm64Test by getting {
-            dependsOn(iosTest)
         }
     }
 }

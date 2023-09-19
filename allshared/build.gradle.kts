@@ -28,11 +28,6 @@ kotlin {
                 api(project(":analytics"))
             }
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.bundles.shared.commonTest)
-            }
-        }
     }
 }
 
