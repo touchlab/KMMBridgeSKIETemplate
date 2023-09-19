@@ -7,9 +7,7 @@ import co.touchlab.kmmbridgekickstart.repository.BreedDataEvent
 import co.touchlab.kmmbridgekickstart.repository.BreedDataRefreshState
 import co.touchlab.kmmbridgekickstart.repository.BreedRepository
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class BreedViewModel(
@@ -17,29 +15,20 @@ class BreedViewModel(
 ) : ViewModel() {
 
     val dataState: StateFlow<BreedDataRefreshState> = breedRepository.dataState
-    private val mutableBreedListState = MutableStateFlow<List<Breed>>(emptyList())
-    val breedListState: StateFlow<List<Breed>> = mutableBreedListState
 
-    private val mutableDataEventState = MutableStateFlow<BreedDataEvent>(BreedDataEvent.Initial)
-    val dataEventState: StateFlow<BreedDataEvent> = mutableDataEventState
+    val breedListState: StateFlow<List<Breed>> = breedRepository.getBreeds()
+        .stateIn(
+            scope = viewModelScope,
+            initialValue = emptyList(),
+            started = SharingStarted.WhileSubscribed(5000L)
+        )
 
-    init {
-        observeBreeds()
-    }
-
-    private fun observeBreeds() {
-        viewModelScope.launch {
-            breedRepository.getBreeds().collect { breedList ->
-                mutableBreedListState.update { breedList }
-            }
-        }
-
-        viewModelScope.launch {
-            breedRepository.dataEvents.collect{ event ->
-                mutableDataEventState.update { event }
-            }
-        }
-    }
+    val dataEventState: StateFlow<BreedDataEvent> = breedRepository.dataEvents
+        .stateIn(
+            scope = viewModelScope,
+            initialValue = BreedDataEvent.Initial,
+            started = SharingStarted.WhileSubscribed(5000L)
+        )
 
     fun refreshBreeds(): Job {
         return viewModelScope.launch {
