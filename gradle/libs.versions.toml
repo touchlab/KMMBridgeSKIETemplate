@@ -6,7 +6,7 @@ compileSdk = "34"
 
 # Dependencies
 kotlin = "1.9.10"
-kmmBridge = "0.5.1-alpha1"
+kmmBridge = "0.5.1-alpha2"
 android-gradle-plugin = "8.1.0"
 coroutines = "1.7.3"
 kotlinx-datetime = "0.4.0"
@@ -14,7 +14,7 @@ ktor = "2.3.3"
 
 stately = "2.0.3"
 kermit = "2.0.0-RC5"
-skie = "0.4.19"
+skie = "0.4.20"
 
 multiplatformSettings = "1.0.0"
 sqlDelight = "2.0.0"
