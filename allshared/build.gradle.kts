@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("multiplatform")
-    id("co.touchlab.faktory.kmmbridge")
+    id("co.touchlab.kmmbridge")
     id("co.touchlab.skie")
     `maven-publish`
 }
@@ -36,6 +36,5 @@ addGithubPackagesRepository()
 kmmbridge {
     mavenPublishArtifacts()
     spm()
-
 //    cocoapods("git@github.com:touchlab/PodSpecs.git")
 }

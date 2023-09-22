@@ -6,7 +6,7 @@ compileSdk = "34"
 
 # Dependencies
 kotlin = "1.9.10"
-kmmBridge = "0.5.1-alpha2"
+kmmBridge = "0.5.0-SNAPSHOT"
 android-gradle-plugin = "8.1.0"
 coroutines = "1.7.3"
 kotlinx-datetime = "0.4.0"
