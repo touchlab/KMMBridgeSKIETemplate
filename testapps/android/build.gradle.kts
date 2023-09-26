@@ -58,10 +58,13 @@ if (remoteBuild) {
     }
 }
 
+val GROUP:String by project
+val LIBRARY_VERSION:String by project
+
 dependencies {
     if (remoteBuild) {
-        implementation(libs.sharedlib.breeds)
-        implementation(libs.sharedlib.analytics)
+        implementation("${GROUP}:analytics-android-debug:${LIBRARY_VERSION}.+")
+        implementation("${GROUP}:breeds-android-debug:${LIBRARY_VERSION}.+")
     } else {
         implementation(project(":analytics"))
         implementation(project(":breeds"))

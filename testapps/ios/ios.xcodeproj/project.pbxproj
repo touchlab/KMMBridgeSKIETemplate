@@ -15,7 +15,6 @@
 		63ACC6C92AAE3D8E00965310 /* iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACC6C82AAE3D8E00965310 /* iosUITestsLaunchTests.swift */; };
 		63ACC6D72AAE3DDB00965310 /* BreedListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACC6D52AAE3DDB00965310 /* BreedListScreen.swift */; };
 		63ACC6D82AAE3DDB00965310 /* BreedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63ACC6D62AAE3DDB00965310 /* BreedViewModel.swift */; };
-		63ACC6DB2AAE3E4B00965310 /* allshared in Frameworks */ = {isa = PBXBuildFile; productRef = 63ACC6DA2AAE3E4B00965310 /* allshared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +47,6 @@
 		63ACC6C82AAE3D8E00965310 /* iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		63ACC6D52AAE3DDB00965310 /* BreedListScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedListScreen.swift; sourceTree = "<group>"; };
 		63ACC6D62AAE3DDB00965310 /* BreedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedViewModel.swift; sourceTree = "<group>"; };
-		63ACC6DC2AAE3F8800965310 /* KMMBridgeKickStartSKIE */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KMMBridgeKickStartSKIE; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +54,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63ACC6DB2AAE3E4B00965310 /* allshared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +77,6 @@
 		63ACC69E2AAE3D8D00965310 = {
 			isa = PBXGroup;
 			children = (
-				63ACC6DC2AAE3F8800965310 /* KMMBridgeKickStartSKIE */,
 				63ACC6A92AAE3D8D00965310 /* ios */,
 				63ACC6BB2AAE3D8E00965310 /* iosTests */,
 				63ACC6C52AAE3D8E00965310 /* iosUITests */,
@@ -143,6 +139,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63ACC6CC2AAE3D8E00965310 /* Build configuration list for PBXNativeTarget "ios" */;
 			buildPhases = (
+				638507442AC26F3B00ADA13A /* ShellScript */,
 				63ACC6A32AAE3D8D00965310 /* Sources */,
 				63ACC6A42AAE3D8D00965310 /* Frameworks */,
 				63ACC6A52AAE3D8D00965310 /* Resources */,
@@ -153,7 +150,6 @@
 			);
 			name = ios;
 			packageProductDependencies = (
-				63ACC6DA2AAE3E4B00965310 /* allshared */,
 			);
 			productName = ios;
 			productReference = 63ACC6A72AAE3D8D00965310 /* ios.app */;
@@ -228,7 +224,6 @@
 			);
 			mainGroup = 63ACC69E2AAE3D8D00965310;
 			packageReferences = (
-				63ACC6D92AAE3E4B00965310 /* XCRemoteSwiftPackageReference "KMMBridgeKickStartSKIE" */,
 			);
 			productRefGroup = 63ACC6A82AAE3D8D00965310 /* Products */;
 			projectDirPath = "";
@@ -266,6 +261,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		638507442AC26F3B00ADA13A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/../..\"\n./gradlew :allshared:embedAndSignAppleFrameworkForXcode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63ACC6A32AAE3D8D00965310 /* Sources */ = {
@@ -628,25 +643,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		63ACC6D92AAE3E4B00965310 /* XCRemoteSwiftPackageReference "KMMBridgeKickStartSKIE" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kpgalligan/KMMBridgeKickStartSKIE.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.4.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		63ACC6DA2AAE3E4B00965310 /* allshared */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 63ACC6D92AAE3E4B00965310 /* XCRemoteSwiftPackageReference "KMMBridgeKickStartSKIE" */;
-			productName = allshared;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 63ACC69F2AAE3D8D00965310 /* Project object */;
 }
