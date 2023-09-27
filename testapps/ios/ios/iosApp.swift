@@ -15,6 +15,8 @@ struct iosApp: App {
     init() {
         self.handle = StartSDKKt.startSDK(analytics: IosAnalytics())
         handle.appAnalytics.appStarted()
+        print(StartSDKKt.sayHello())
+        
     }
     
     var body: some Scene {

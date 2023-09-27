@@ -49,7 +49,7 @@ if (remoteBuild) {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/touchlab-lab/KMMBridgeKickStartSKIE")
+            url = uri("https://maven.pkg.github.com/[your org]/[your repo]")
             credentials {
                 username = project.property("GITHUB_PACKAGES_USERNAME") as String
                 password = project.property("GITHUB_PACKAGES_PASSWORD") as String
