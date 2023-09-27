@@ -1,4 +1,4 @@
-name: KMM Bridge/iOS Publish
+name: iOS Publish
 on:
   workflow_dispatch:
 #  push:
