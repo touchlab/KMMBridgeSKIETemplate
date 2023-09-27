@@ -8,3 +8,5 @@ fun startSDK(analytics: Analytics): SDKHandle {
         breedAnalytics = analyticsHandle.breedAnalytics
     )
 }
+
+fun sayHello() = "Hello from Kotlin!"
