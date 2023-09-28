@@ -28,7 +28,6 @@ kotlin {
         }
     }
 
-
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -44,5 +43,5 @@ addGithubPackagesRepository()
 kmmbridge {
     mavenPublishArtifacts()
     spm()
-    cocoapods("git@github.com:touchlab/PodSpecs.git")
+//    cocoapods("git@github.com:touchlab/PodSpecs.git")
 }
