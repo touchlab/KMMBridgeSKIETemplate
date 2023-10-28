@@ -5,29 +5,29 @@ targetSdk = "34"
 compileSdk = "34"
 
 # Dependencies
-kotlin = "1.9.10"
+kotlin = "1.9.20-RC2"
 kmmBridge = "0.5.0"
 android-gradle-plugin = "8.1.0"
 coroutines = "1.7.3"
-kotlinx-datetime = "0.4.0"
-ktor = "2.3.3"
+kotlinx-datetime = "0.4.1"
+ktor = "2.3.4"
 
-stately = "2.0.3"
+stately = "2.0.5"
 kermit = "2.0.1"
-skie = "0.4.20"
+skie = "0.5.1-preview.1.9.20-RC2"
 
 multiplatformSettings = "1.0.0"
 sqlDelight = "2.0.0"
 
-compose = "1.5.1"
+compose = "1.5.4"
 composeCompiler = "1.5.3"
 
 # Sample - Android
-androidx-core = "1.10.1"
+androidx-core = "1.12.0"
 androidx-lifecycle = "2.6.2"
-androidx-activity-compose = "1.7.2"
+androidx-activity-compose = "1.8.0"
 android-desugaring = "2.0.3"
-koin = "3.4.3"
+koin = "3.5.0"
 
 sharedlib = "0.4.+"
 
