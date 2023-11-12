@@ -9,7 +9,7 @@ jobs:
     permissions:
       contents: write
       packages: write
-    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@v1.0
+    uses: touchlab/KMMBridgeGithubWorkflow/.github/workflows/faktorybuildautoversion.yml@main
     with:
       jvmVersion: 17
       versionBaseProperty: LIBRARY_VERSION
