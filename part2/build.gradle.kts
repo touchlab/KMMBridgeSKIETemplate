@@ -1,16 +1,12 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("multiplatform")
-    id("co.touchlab.kmmbridge")
-    id("co.touchlab.skie")
-    kotlin("native.cocoapods")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kmmbridge)
+    alias(libs.plugins.skie)
+    alias(libs.plugins.cocoapods)
     `maven-publish`
 }
 
 kotlin {
-    @Suppress("OPT_IN_USAGE")
-    targetHierarchy.default()
-
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -29,7 +25,7 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(project(":breeds"))
                 api(project(":analytics"))

@@ -1,23 +1,21 @@
 plugins {
-    kotlin("multiplatform")
-    kotlin("plugin.serialization")
-    id("app.cash.sqldelight")
-    id("com.android.library")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.android.library)
     `maven-publish`
 }
 
 kotlin {
-    @Suppress("OPT_IN_USAGE")
-    targetHierarchy.default()
     androidTarget {
         publishAllLibraryVariants()
     }
-    ios()
-    // Note: iosSimulatorArm64 target requires that all dependencies have M1 support
+    iosX64()
+    iosArm64()
     iosSimulatorArm64()
 
     sourceSets {
-        val commonMain by getting {
+        commonMain {
             dependencies {
                 implementation(project(":analytics"))
                 implementation(libs.coroutines.core)
@@ -28,13 +26,13 @@ kotlin {
                 implementation(libs.sqlDelight.coroutinesExt)
             }
         }
-        val androidMain by getting {
+        androidMain {
             dependencies {
                 implementation(libs.sqlDelight.android)
                 implementation(libs.ktor.client.okHttp)
             }
         }
-        val iosMain by getting {
+        iosMain {
             dependencies {
                 implementation(libs.touchlab.stately.common)
                 implementation(libs.sqlDelight.native)
@@ -53,7 +51,6 @@ android {
     }
 
     defaultConfig {
-        @Suppress("UnstableApiUsage")
         minSdk = libs.versions.minSdk.get().toInt()
     }
     namespace = "co.touchlab.kmmbridgekickstart.breeds"
