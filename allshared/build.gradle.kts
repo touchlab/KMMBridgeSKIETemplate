@@ -19,11 +19,9 @@ kotlin {
     }
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":breeds"))
-                api(project(":analytics"))
-            }
+        commonMain.dependencies {
+            implementation(project(":breeds"))
+            api(project(":analytics"))
         }
     }
 }

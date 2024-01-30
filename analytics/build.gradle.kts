@@ -13,10 +13,8 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(libs.touchlab.stately.concurrency)
-            }
+        commonMain.dependencies {
+            implementation(libs.touchlab.stately.concurrency)
         }
     }
 }

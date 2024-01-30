@@ -15,29 +15,23 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
-        commonMain {
-            dependencies {
-                implementation(project(":analytics"))
-                implementation(libs.coroutines.core)
-                implementation(libs.bundles.ktor.common)
-                implementation(libs.multiplatformSettings)
-                implementation(libs.kotlinx.dateTime)
-                implementation(libs.touchlab.kermit)
-                implementation(libs.sqlDelight.coroutinesExt)
-            }
+        commonMain.dependencies {
+            implementation(project(":analytics"))
+            implementation(libs.coroutines.core)
+            implementation(libs.bundles.ktor.common)
+            implementation(libs.multiplatformSettings)
+            implementation(libs.kotlinx.dateTime)
+            implementation(libs.touchlab.kermit)
+            implementation(libs.sqlDelight.coroutinesExt)
         }
-        androidMain {
-            dependencies {
-                implementation(libs.sqlDelight.android)
-                implementation(libs.ktor.client.okHttp)
-            }
+        androidMain.dependencies {
+            implementation(libs.sqlDelight.android)
+            implementation(libs.ktor.client.okHttp)
         }
-        iosMain {
-            dependencies {
-                implementation(libs.touchlab.stately.common)
-                implementation(libs.sqlDelight.native)
-                implementation(libs.ktor.client.ios)
-            }
+        iosMain.dependencies {
+            implementation(libs.touchlab.stately.common)
+            implementation(libs.sqlDelight.native)
+            implementation(libs.ktor.client.ios)
         }
     }
 }
