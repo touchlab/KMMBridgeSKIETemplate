@@ -7,7 +7,9 @@ import co.touchlab.kmmbridgekickstart.repository.BreedDataEvent
 import co.touchlab.kmmbridgekickstart.repository.BreedDataRefreshState
 import co.touchlab.kmmbridgekickstart.repository.BreedRepository
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class BreedViewModel(

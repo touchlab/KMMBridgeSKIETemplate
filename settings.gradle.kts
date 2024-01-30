@@ -6,4 +6,12 @@ pluginManagement {
     }
 }
 
+dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
 include("breeds", "analytics", "allshared", ":testapps:android")

@@ -1,17 +1,13 @@
 plugins {
-    kotlin("multiplatform") version libs.versions.kotlin.get() apply false
-    kotlin("plugin.serialization") version libs.versions.kotlin.get() apply false
-    id("com.android.library") version libs.versions.android.gradle.plugin.get() apply false
-    id("co.touchlab.kmmbridge") version libs.versions.kmmBridge.get() apply false
-    id("app.cash.sqldelight") version libs.versions.sqlDelight.get() apply false
-    id("co.touchlab.skie") version libs.versions.skie.get() apply false
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.serialization) apply false
+    alias(libs.plugins.kmmbridge) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.cocoapods) apply false
+    alias(libs.plugins.sqlDelight) apply false
+    alias(libs.plugins.skie) apply false
 }
 
 val autoVersion = project.property(
@@ -29,5 +25,5 @@ subprojects {
 }
 
 tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }

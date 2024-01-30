@@ -6,8 +6,8 @@ import com.russhwolf.settings.NSUserDefaultsSettings
 import com.russhwolf.settings.Settings
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import io.ktor.client.engine.*
-import io.ktor.client.engine.darwin.*
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.engine.darwin.Darwin
 import platform.Foundation.NSUserDefaults
 
 fun breedStartup(analyticsHandle: AnalyticsHandle): BreedRepository {

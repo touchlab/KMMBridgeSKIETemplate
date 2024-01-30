@@ -5,29 +5,29 @@ targetSdk = "34"
 compileSdk = "34"
 
 # Dependencies
-kotlin = "1.9.20"
+kotlin = "1.9.22"
 kmmBridge = "0.5.1"
-android-gradle-plugin = "8.1.0"
+android-gradle-plugin = "8.2.2"
 coroutines = "1.7.3"
-kotlinx-datetime = "0.4.1"
-ktor = "2.3.5"
+kotlinx-datetime = "0.5.0"
+ktor = "2.3.7"
 
 stately = "2.0.5"
-kermit = "2.0.1"
-skie = "0.5.5"
+kermit = "2.0.2"
+skie = "0.6.1"
 
-multiplatformSettings = "1.0.0"
-sqlDelight = "2.0.0"
+multiplatformSettings = "1.1.1"
+sqlDelight = "2.0.1"
 
 compose = "1.5.4"
-composeCompiler = "1.5.4"
+composeCompiler = "1.5.8"
 
 # Sample - Android
 androidx-core = "1.12.0"
-androidx-lifecycle = "2.6.2"
-androidx-activity-compose = "1.8.0"
+androidx-lifecycle = "2.7.0"
+androidx-activity-compose = "1.8.2"
 android-desugaring = "2.0.4"
-koin = "3.5.0"
+koin = "3.5.3"
 
 sharedlib = "0.4.+"
 
@@ -73,6 +73,17 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 
 sharedlib-analytics = { module = "co.touchlab.kmmbridgekickstartskie:analytics-android-debug", version.ref = "sharedlib" }
 sharedlib-breeds = { module = "co.touchlab.kmmbridgekickstartskie:breeds-android-debug", version.ref = "sharedlib" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+skie = { id = "co.touchlab.skie", version.ref = "skie" }
+kmmbridge = { id = "co.touchlab.kmmbridge", version.ref = "kmmBridge" }
+cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 
 [bundles]
 ktor-common = ["ktor-client-core", "ktor-client-logging", "ktor-client-serialization", "ktor-client-contentNegotiation"]

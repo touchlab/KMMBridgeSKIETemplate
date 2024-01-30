@@ -7,8 +7,8 @@ import co.touchlab.kmmbridgekickstart.db.KMMBridgeKickStartDb
 import co.touchlab.kmmbridgekickstart.repository.BreedRepository
 import com.russhwolf.settings.Settings
 import com.russhwolf.settings.SharedPreferencesSettings
-import io.ktor.client.engine.*
-import io.ktor.client.engine.okhttp.*
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.engine.okhttp.OkHttp
 
 internal fun breedStartup(context: Context, analyticsHandle: AnalyticsHandle): BreedRepository {
     val locator = AndroidServiceLocator(context, analyticsHandle)
